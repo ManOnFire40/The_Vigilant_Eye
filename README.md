@@ -47,9 +47,6 @@
 ---
 
 
-
----
-
 ### 🔧 Configuration
 
 Create a `.env` or config file to store your API keys:
