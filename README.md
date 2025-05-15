@@ -66,20 +66,7 @@ ABUSEIPDB_API_KEY=your_abuseipdb_key
 IPINFO_API_KEY=your_ipinfo_key
 ```
 
----
 
-### 📁 Project Structure
-
-```
-the-vigilant-eye/
-│
-├── API/                  # API integrations (VirusTotal, IPinfo, AbuseIPDB)
-├── API_DB/               # Local database or log storage
-├── modules/              # Helper modules or business logic
-├── main.py               # Application entry point
-├── README.md
-└── .gitignore
-```
 
 ---
 
