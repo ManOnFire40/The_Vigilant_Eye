@@ -37,9 +37,6 @@
 * [VirusTotal](https://www.virustotal.com/)
 * [AbuseIPDB](https://www.abuseipdb.com/)
 * [IPinfo](https://ipinfo.io/)
-
-> Note: API keys for each service are required. Free-tier keys are supported.
-
 ---
 
 
