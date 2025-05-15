@@ -1,6 +1,4 @@
-Here's a professional and clear `README.md` file for your GitHub project **The Vigilant Eye** — a desktop tool for SOC analysts:
 
----
 
 ## 🛡️ The Vigilant Eye
 
