@@ -3,7 +3,11 @@
 **The Vigilant Eye** is a powerful desktop application designed for SOC (Security Operations Center) analysts to swiftly investigate and correlate IP-related threat intelligence. It integrates with top threat intelligence platforms including **VirusTotal**, **AbuseIPDB**, and **IPinfo** to provide real-time enrichment and contextual data for IP addresses and IOC.
 
 ---
-![black_D3](https://github.com/user-attachments/assets/d7eb12ee-5f5e-4700-8913-60d77b4e1ec9)
+<div align="center">
+<img src="https://github.com/user-attachments/assets/d7eb12ee-5f5e-4700-8913-60d77b4e1ec9" alt="black_D3" width="500"/>
+<div/>
+---
+
 
 <div align="center">
 <img src="https://github.com/user-attachments/assets/5ff06395-836e-4ae4-a025-016db10621ee" alt="White_D2" width="500"/>
