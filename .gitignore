@@ -1,0 +1,13 @@
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+myenv/Scripts/
+myenv/Lib/    
+myenv/include/    
+
+# OS-specific files
+.DS_Store
+Thumbs.db
