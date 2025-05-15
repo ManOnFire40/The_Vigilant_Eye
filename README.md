@@ -1,7 +1,7 @@
 
 
+<img src="https://github.com/user-attachments/assets/4ccb205f-5732-432c-9651-2515a13dbbfb" alt="White_D2" width="150"/>
 
-![White_D3](https://github.com/user-attachments/assets/7ac8e704-73a9-4241-8aaa-a3c0809fd1a9)
 
 
 ## 🛡️ The Vigilant Eye
