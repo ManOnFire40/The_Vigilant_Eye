@@ -6,12 +6,6 @@
 <div align="center">
 <img src="https://github.com/user-attachments/assets/d7eb12ee-5f5e-4700-8913-60d77b4e1ec9" alt="black_D3" width="500"/>
 <div/>
----
-
-
-<div align="center">
-<img src="https://github.com/user-attachments/assets/5ff06395-836e-4ae4-a025-016db10621ee" alt="White_D2" width="500"/>
-<div/>
 
 ---
 
