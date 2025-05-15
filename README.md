@@ -4,9 +4,8 @@
 
 ---
 
-
 <div align="center">
-<img src="https://github.com/user-attachments/assets/4ccb205f-5732-432c-9651-2515a13dbbfb" alt="White_D2" width="500"/>
+<img src="https://github.com/user-attachments/assets/5ff06395-836e-4ae4-a025-016db10621ee" alt="White_D2" width="500"/>
 <div/>
 
 ---
