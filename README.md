@@ -1,5 +1,9 @@
 
 
+
+![White_D3](https://github.com/user-attachments/assets/7ac8e704-73a9-4241-8aaa-a3c0809fd1a9)
+
+
 ## 🛡️ The Vigilant Eye
 
 **The Vigilant Eye** is a powerful desktop application designed for SOC (Security Operations Center) analysts to swiftly investigate and correlate IP-related threat intelligence. It integrates with top threat intelligence platforms including **VirusTotal**, **AbuseIPDB**, and **IPinfo** to provide real-time enrichment and contextual data for IP addresses.
@@ -22,9 +26,6 @@
 * 🧠 **Correlation View**
   A unified view that merges data across all three platforms to help analysts quickly identify suspicious infrastructure.
 
-* 💾 **Local Database Support**
-  Optionally log or cache investigation results for future reference or auditing.
-
 * 🖥️ **User-Friendly Desktop UI**
   Lightweight and intuitive interface designed for quick and responsive investigations.
 
@@ -43,12 +44,10 @@
 ### 🛠️ Installation
 
 ```bash
-git clone https://github.com/yourusername/the-vigilant-eye.git
+git clone https://github.com/ManOnFire40/the-vigilant-eye.git
 cd the-vigilant-eye
 python -m venv myenv
 source myenv/bin/activate  # or myenv\Scripts\activate on Windows
-pip install -r requirements.txt
-python main.py
 ```
 
 ---
@@ -86,16 +85,7 @@ Contributions are welcome! Please open issues or submit pull requests to help im
 
 ---
 
-### 📄 License
-
-MIT License
-
----
 
 ### 📣 Disclaimer
 
 This tool is intended for legitimate security research and SOC operations. Misuse for unauthorized surveillance or privacy violation is strictly discouraged.
-
----
-
-Let me know if you'd like this customized for a specific framework (like Tkinter, PyQt, etc.) or if you want to include screenshots or badges.
