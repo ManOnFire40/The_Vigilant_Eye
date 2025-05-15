@@ -12,6 +12,7 @@
 
 
 
+---
 
 
 ### 🚀 Features
@@ -45,14 +46,7 @@
 
 ---
 
-### 🛠️ Installation
 
-```bash
-git clone https://github.com/ManOnFire40/the-vigilant-eye.git
-cd the-vigilant-eye
-python -m venv myenv
-source myenv/bin/activate  # or myenv\Scripts\activate on Windows
-```
 
 ---
 
