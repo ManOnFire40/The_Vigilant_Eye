@@ -12,7 +12,7 @@
 ### 🚀 Features
 
 * 🔍 **IP Lookup**
-  Fetch detailed information about any IP address including geolocation, ASN, and provider details via **IPinfo**.
+  Fetch detailed information about any IP address including geolocation, ASN, and provider details.
 
 * ⚠️ **Threat Intelligence**
   Identify malicious indicators like:
