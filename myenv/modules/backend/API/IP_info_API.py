@@ -3,6 +3,8 @@ import requests
 IPINFO_API_TOKEN = None
 
 
+##IPINFO_API_TOKEN need to be with a paid account
+
 def save_Virus_total_API_Key(API):
     try:
         with open('../API_DB/IPINFO_API_TOKEN.txt', 'w') as fp:
