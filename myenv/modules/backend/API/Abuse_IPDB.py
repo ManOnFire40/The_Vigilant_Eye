@@ -4,7 +4,7 @@ import json
 IPDB_API = None
 
 
-def save_Virus_total_API_Key(API):
+def save_IPDB_API_Key(API):
     try:
         with open('../API_DB/IPDB_API_Key.txt', 'w') as fp:
             fp.write(API)
