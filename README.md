@@ -38,19 +38,7 @@
 ---
 
 
-### 🔧 Configuration
 
-Create a `.env` or config file to store your API keys:
-
-```
-VIRUSTOTAL_API_KEY=your_virustotal_key
-ABUSEIPDB_API_KEY=your_abuseipdb_key
-IPINFO_API_KEY=your_ipinfo_key
-```
-
-
-
----
 
 ### 🧑‍💻 Contributing
 
