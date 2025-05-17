@@ -52,8 +52,10 @@ Contributions are welcome! Please open issues or submit pull requests to help im
 
 ### NOTE
 
-Your API keys are stored locally, so no one would have access to them even me. 
+-Your API keys are stored locally, so no one would have access to them even me. 
 
+-IPinfo require a subscription account API to access privacy check API, so it is a feature for users that there organization provide a subscription account.
+  
 ---
 
 
