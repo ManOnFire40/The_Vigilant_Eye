@@ -6,7 +6,8 @@ __pycache__/
 # Virtual environment
 myenv/Scripts/
 myenv/Lib/    
-myenv/include/    
+myenv/include/  
+myenv/pyvenv.cfg  
 
 # OS-specific files
 .DS_Store
