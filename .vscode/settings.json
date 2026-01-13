@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./myenv/modules/backend/API/API_DB"
+    ]
+}

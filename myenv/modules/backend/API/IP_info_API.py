@@ -1,4 +1,6 @@
 import requests
+import Data_handling
+
 class IPINFO:
     def __init__(self, IPINFO_API_TOKEN=None):
         self.IPINFO_API_TOKEN = IPINFO_API_TOKEN
@@ -54,3 +56,34 @@ class IPINFO:
             error_message = str(f"Exception Error: {e}")
             print(error_message)
             return error_message    
+
+
+
+#############################################################################################
+
+def bulk_ip_privacy_check_from_csv(self, input_csv, output_csv):
+    ip_list = Data_handling.csv_to_list(input_csv)
+    results = []
+
+    for ip in ip_list:
+        print(f"Checking IP: {ip}")
+        response = self.IP_privacy_detection(ip)
+
+        if isinstance(response, dict):
+            vpn = response.get("vpn", False)
+            tor = response.get("tor", False)
+            hosting = response.get("hosting", False)
+            proxy = response.get("proxy", False)
+            relay = response.get("relay", False)
+            service = response.get("service", "unknown")
+
+            results.append(
+                f"{ip}, vpn={vpn}, tor={tor}, hosting={hosting}, "
+                f"proxy={proxy}, relay={relay}, service={service}"
+            )
+        else:
+            results.append(f"{ip}, error")
+
+    Data_handling.list_to_csv(results, output_csv)
+
+
