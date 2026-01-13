@@ -1,134 +1,107 @@
 import requests
 import json
+import os
 import Data_handling
 
-IPDB_API= None
 class IPDB:
-    def __init__(self, IPDB_API  = None):
+    def __init__(self, IPDB_API=None):
         self.IPDB_API = IPDB_API
-        self.load_IPDB_API_Key()  # Call the function inside the constructor
-                
+        self.load_IPDB_API_Key()
 
+    # ================= PATH HANDLING =================
+    @staticmethod
+    def _api_key_path():
+        base = os.path.dirname(os.path.abspath(__file__))
+        return os.path.join(base, "API_DB", "IPDB_API_Key.txt")
 
+    # ================= API KEY =================
     def save_IPDB_API_Key(self, API):
         try:
-            with open('../API_DB/IPDB_API_Key.txt', 'w') as fp:
+            with open(self._api_key_path(), "w") as fp:
                 fp.write(API)
-        except FileNotFoundError as e:
-            print(f"Please check the DB path")
-            print(f"Error: {e}")
-            return (f"Error: {e}")      
+            self.IPDB_API = API
+        except Exception as e:
+            print(f"Error saving API key: {e}")
 
     def load_IPDB_API_Key(self):
         try:
-            with open('../API_DB/IPDB_API_Key.txt', 'r') as fp:
-                line = fp.readline()
-                while line != '':
-                    self.IPDB_API = str(line)
-                return self.IPDB_API    
-        except FileNotFoundError as e:
-            print(f"Please check the DB path")
-            print(f"Error: {e}")
-            return (f"Error: {e}")       
-        
+            with open(self._api_key_path(), "r") as fp:
+                self.IPDB_API = fp.readline().strip()
+            return self.IPDB_API
+        except FileNotFoundError:
+            print("IPDB API key not found.")
+            return None
 
-
-    ### AbuseIPDB API Integration
+    # ================= SINGLE LOOKUPS =================
     def get_ip_info_ipdb(self, ip_address):
         try:
-            # Defining the api-endpoint
-            url = 'https://api.abuseipdb.com/api/v2/check'
-            querystring = {
-                'ipAddress': ip_address,
-                'maxAgeInDays': '90'
-            }
+            url = "https://api.abuseipdb.com/api/v2/check"
             headers = {
-                'Accept': 'application/json',
-                'Key': self.IPDB_API
+                "Accept": "application/json",
+                "Key": self.IPDB_API
             }
-            response = requests.request(method='GET', url=url, headers=headers, params=querystring)
-            # Formatted output
-            decodedResponse = json.loads(response.text)
-            print (json.dumps(decodedResponse, sort_keys=True, indent=4))
-            return decodedResponse
+            params = {
+                "ipAddress": ip_address,
+                "maxAgeInDays": 90
+            }
+            response = requests.get(url, headers=headers, params=params)
+            data = response.json()
+            print(json.dumps(data, indent=4))
+            return data
         except Exception as e:
-            error_message = str(f"Exception Error: {e}")
-            print(error_message)
-            return error_message
-
-
+            return f"Exception Error: {e}"
 
     def get_subnet_info_ipdb(self, subnet):
         try:
-            # Defining the api-endpoint
-            url = 'https://api.abuseipdb.com/api/v2/check-block'
-            querystring = {
-                'network':subnet,
-                'maxAgeInDays':'15',
-            }
+            url = "https://api.abuseipdb.com/api/v2/check-block"
             headers = {
-                'Accept': 'application/json',
-                'Key': self.IPDB_API
+                "Accept": "application/json",
+                "Key": self.IPDB_API
             }
-            response = requests.request(method='GET', url=url, headers=headers, params=querystring)
-            # Formatted output
-            decodedResponse = json.loads(response.text)
-            print (json.dumps(decodedResponse, sort_keys=True, indent=4))
-            return decodedResponse
+            params = {
+                "network": subnet,
+                "maxAgeInDays": 15
+            }
+            response = requests.get(url, headers=headers, params=params)
+            data = response.json()
+            print(json.dumps(data, indent=4))
+            return data
         except Exception as e:
-            error_message = str(f"Exception Error: {e}")
-            print(error_message)
-            return error_message
+            return f"Exception Error: {e}"
 
+    # ================= BULK =================
+    def bulk_ip_check_ipdb_from_csv(self, input_csv, output_csv):
+        ip_list = Data_handling.csv_to_list(input_csv)
+        results = []
 
+        for ip in ip_list:
+            response = self.get_ip_info_ipdb(ip)
+            if isinstance(response, dict):
+                d = response.get("data", {})
+                results.append(
+                    f"{ip}, abuse_score={d.get('abuseConfidenceScore',0)}, "
+                    f"country={d.get('countryCode','N/A')}, "
+                    f"isp={d.get('isp','N/A')}, reports={d.get('totalReports',0)}"
+                )
+            else:
+                results.append(f"{ip}, error")
 
-def bulk_ip_check_ipdb_from_csv(self, input_csv, output_csv):
-    ip_list = Data_handling.csv_to_list(input_csv)
-    results = []
+        Data_handling.list_to_csv(results, output_csv)
 
-    for ip in ip_list:
-        print(f"Checking IP (AbuseIPDB): {ip}")
-        response = self.get_ip_info_ipdb(ip)
+    def bulk_subnet_check_ipdb_from_csv(self, input_csv, output_csv):
+        subnet_list = Data_handling.csv_to_list(input_csv)
+        results = []
 
-        if isinstance(response, dict):
-            data = response.get("data", {})
-            abuse_score = data.get("abuseConfidenceScore", 0)
-            country = data.get("countryCode", "N/A")
-            isp = data.get("isp", "N/A")
-            total_reports = data.get("totalReports", 0)
+        for subnet in subnet_list:
+            response = self.get_subnet_info_ipdb(subnet)
+            if isinstance(response, dict):
+                d = response.get("data", {})
+                results.append(
+                    f"{subnet}, total_ips={d.get('totalIps',0)}, "
+                    f"reported_ips={d.get('reportedIps',0)}, "
+                    f"abuse_score={d.get('abuseConfidenceScore',0)}"
+                )
+            else:
+                results.append(f"{subnet}, error")
 
-            results.append(
-                f"{ip}, abuse_score={abuse_score}, country={country}, "
-                f"isp={isp}, reports={total_reports}"
-            )
-        else:
-            results.append(f"{ip}, error")
-
-    Data_handling.list_to_csv(results, output_csv)
-
-
-
-def bulk_subnet_check_ipdb_from_csv(self, input_csv, output_csv):
-    subnet_list = Data_handling.csv_to_list(input_csv)
-    results = []
-
-    for subnet in subnet_list:
-        print(f"Checking subnet (AbuseIPDB): {subnet}")
-        response = self.get_subnet_info_ipdb(subnet)
-
-        if isinstance(response, dict):
-            data = response.get("data", {})
-            total_ips = data.get("totalIps", 0)
-            reported_ips = data.get("reportedIps", 0)
-            abuse_score = data.get("abuseConfidenceScore", 0)
-
-            results.append(
-                f"{subnet}, total_ips={total_ips}, "
-                f"reported_ips={reported_ips}, abuse_score={abuse_score}"
-            )
-        else:
-            results.append(f"{subnet}, error")
-
-    Data_handling.list_to_csv(results, output_csv)
-
-
+        Data_handling.list_to_csv(results, output_csv)
