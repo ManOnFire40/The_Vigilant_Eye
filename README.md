@@ -1,68 +1,202 @@
-## 🛡️ The Vigilant Eye (In Development)
+# 🛡️ The Vigilant Eye
 
-**The Vigilant Eye** designed for SOC (Security Operations Center) analysts to swiftly investigate and correlate IP-related threat intelligence. It integrates with top threat intelligence platforms including **VirusTotal**, **AbuseIPDB**, and **IPinfo** to provide real-time enrichment and contextual data for IP addresses and IOC.
+A **CLI-based Threat Intelligence Aggregation Tool** that integrates multiple security intelligence providers into a single, interactive command-line interface.
 
----
-<div align="center">
-<img src="https://github.com/user-attachments/assets/3fe89066-146d-44ed-9efc-65b458554a4f" alt="black_D3" width="350"/>
-<div/>
+The Vigilant Eye allows security analysts, SOC engineers, and students to quickly investigate **IPs, domains, URLs, and file hashes** using well-known threat intelligence APIs.
 
 ---
 
-### 🚀 Features
+## 🚀 Features
 
-* 🔍 **IP Lookup**
-  Fetch detailed information about any IP address including geolocation, ASN, and provider details.
+### 🔍 Integrated Threat Intelligence Sources
 
-* ⚠️ **Threat Intelligence**
-  Identify malicious indicators like:
+* **AbuseIPDB** – IP reputation & abuse confidence scoring
+* **IPINFO** – IP privacy, VPN, proxy, and hosting detection
+* **VirusTotal** – File, URL, domain, and DNS reputation analysis
 
-  * VPN or Tor usage
-  * Hosting providers
-  * Abuse scores
-  * VirusTotal detections and last analysis
+### 🧠 Smart CLI Design
 
-* 🧠 **Correlation View**
-  A unified view that merges data across all three platforms to help analysts quickly identify suspicious infrastructure.
+* Menu-driven interface
+* Interactive parameter input
+* Runtime API key injection
+* Optional API key persistence
+* Bulk analysis via CSV files
 
-* 🖥️ **User-Friendly Desktop UI**
-  Lightweight and intuitive interface designed for quick and responsive investigations.
+### 📦 Bulk Processing
 
----
-
-### 🔗 Integrations
-
-* [VirusTotal](https://www.virustotal.com/)
-* [AbuseIPDB](https://www.abuseipdb.com/)
-* [IPinfo](https://ipinfo.io/)
----
-
-
-
-
-### 🧑‍💻 Contributing
-
-
-Contributions are welcome! Please open issues or submit pull requests to help improve the tool.
+* Bulk IP checks
+* Bulk subnet analysis
+* Bulk file hash scanning
+* Bulk domain and URL checks
 
 ---
 
+## 🗂️ Project Structure
 
+```
+THE-VIGILANT-EYE
+│
+├── backend
+│   └── API
+│       ├── Abuse_IPDB.py
+│       ├── IP_info_API.py
+│       └── virus_total.py
+│
+├── main.py
+├── README.md
+└── requirements.txt
+```
 
-
-### NOTE
-
--Your API keys are stored locally, so no one would have access to them even me. 
-
--IPinfo require a subscription account to access privacy check API, so it is a feature for users that there organization provide a subscription account.
-
--GUI is still in under development.
-  
 ---
 
+## ⚙️ Installation
 
+### 1️⃣ Clone the repository
 
+```bash
+git clone https://github.com/yourusername/the-vigilant-eye.git
+cd the-vigilant-eye
+```
 
-### 📣 Disclaimer
+### 2️⃣ Install dependencies
 
-This tool is intended for legitimate security research and SOC operations. Misuse for unauthorized surveillance or privacy violation is strictly discouraged.
+```bash
+pip install -r requirements.txt
+```
+
+> Python **3.9+** is recommended
+
+---
+
+## ▶️ Usage
+
+Run the application:
+
+```bash
+python main.py
+```
+
+You will be presented with the main menu:
+
+```
+===== THE VIGILANT EYE =====
+1. AbuseIPDB
+2. IPINFO
+3. VirusTotal
+4. API Key Management
+0. Exit
+```
+
+---
+
+## 🔑 API Key Management
+
+The tool supports **runtime API key input** directly from the CLI.
+
+### Supported Options
+
+* Set API key for current session
+* Save API key to disk for future runs
+
+Navigate to:
+
+```
+Main Menu → API Key Management
+```
+
+### Required API Keys
+
+| Service    | Required |
+| ---------- | -------- |
+| AbuseIPDB  | ✅ Yes   |
+| IPINFO     | ✅ Yes   |
+| VirusTotal | ✅ Yes   |
+
+> API keys are **never hardcoded** in the source code.
+
+---
+
+## 📊 Supported Operations
+
+### AbuseIPDB
+
+* Single IP reputation check
+* Subnet reputation check
+* Bulk IP checks from CSV
+* Bulk subnet checks from CSV
+
+### IPINFO
+
+* IP privacy detection (VPN / Proxy / Hosting)
+* Bulk IP privacy checks from CSV
+
+### VirusTotal
+
+* File hash reports
+* File behavior summary
+* MITRE ATT&CK trees
+* URL scanning & reports
+* Domain reputation
+* DNS resolution
+* Bulk hash, URL, and domain checks
+
+---
+
+## 📁 CSV Format Examples
+
+### Bulk IP CSV
+
+```csv
+ip
+8.8.8.8
+1.1.1.1
+```
+
+### Bulk Hash CSV
+
+```csv
+hash
+d41d8cd98f00b204e9800998ecf8427e
+```
+
+---
+
+## 🔐 Security Notes
+
+* API keys are stored locally (if saved)
+* Do **NOT** commit API keys to version control
+* Add key files to `.gitignore`
+
+---
+
+## 🧪 Intended Use
+
+* SOC investigations
+* Threat intelligence enrichment
+* Blue team tooling
+* Cybersecurity education
+
+## 🛠️ Future Enhancements
+
+* JSON / SIEM export
+* FastAPI REST interface
+* Authentication & role separation
+* Rate-limit handling
+* Docker support
+
+---
+
+## 👨‍💻 Author
+
+**Mohamed Ehab**
+Senior SOC Analyst
+
+---
+
+## 📜 Disclaimer
+
+This tool is intended for **educational and defensive security purposes only**. Misuse of third-party APIs may violate their terms of service.
+
+---
+
+⭐ If you find this project useful, consider giving it a star!
